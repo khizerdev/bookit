@@ -1,10 +1,21 @@
 import Room from "../models/room";
 
-const allRooms = (req,res) => {
+const allRooms = async (req,res) => {
+   try {
+    
+    const rooms = await Room.find()
+
     res.status(200).json({
         success:true,
-        message: "All rooms"
+        count: rooms.length,
+        rooms
     })
+   } catch (error) {
+    res.status(400).json({
+        success:true,
+        message: error.message
+    })
+   }
 }
 
 
