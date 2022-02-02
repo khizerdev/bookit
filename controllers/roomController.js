@@ -1,8 +1,9 @@
 import Room from "../models/room";
 import ErrorHandler from '../utils/errorHandler'
+import catchAsyncErrors from '../middlewares/catchAsyncErrors'
 
-const allRooms = async (req,res) => {
-   try {
+const allRooms = catchAsyncErrors(async (req,res) => {
+  
     
     const rooms = await Room.find()
 
@@ -11,17 +12,12 @@ const allRooms = async (req,res) => {
         count: rooms.length,
         rooms
     })
-   } catch (error) {
-    res.status(400).json({
-        success:true,
-        message: error.message
-    })
-   }
-}
+ 
+})
 
 
 // Create new room   =>   /api/rooms
-const newRoom = async (req, res) => {
+const newRoom = catchAsyncErrors(async (req, res) => {
 
     // const images = req.body.images;
 
@@ -40,28 +36,23 @@ const newRoom = async (req, res) => {
 
     // }
 
-    try {
+    
         const room = await Room.create(req.body);
 
         res.status(200).json({
             success: true,
             room
         })
-    } catch(error) {
-        res.status(400).json({
-            success: false,
-            error: error.message    
-        })
-    }
+   
 
 
    
-}
+})
 
 // Get room details   =>   /api/rooms/:id
-const getSingleRoom = async (req, res, next) => {
+const getSingleRoom = catchAsyncErrors(async (req, res, next) => {
 
-    try {
+   
         const room = await Room.findById(req.query.id);
 
         if (!room) {
@@ -72,20 +63,15 @@ const getSingleRoom = async (req, res, next) => {
             success: true,
             room
         })
-    } catch (error) {
-        res.status(400).json({
-            success:false,
-            message: error.message
-        })
-    }
+  
 
     
-}
+})
 
 // Update room details   =>   /api/rooms/:id
-const updateRoom = async (req, res) => {
+const updateRoom = catchAsyncErrors(async (req, res) => {
 
-    try {
+    
         let room = await Room.findById(req.query.id);
 
     if (!room) {
@@ -102,21 +88,16 @@ const updateRoom = async (req, res) => {
             success: true,
             room
         })
-    } catch (error) {
-        res.status(400).json({
-            success:false,
-            message: error.message
-        })
-    }
+ 
 
     
 
-}
+})
 
 // Delete room   =>   /api/rooms/:id
-const deleteRoom = async (req, res) => {
+const deleteRoom = catchAsyncErrors(async (req, res) => {
 
-    try {
+   
         const room = await Room.findById(req.query.id);
 
         if (!room) {
@@ -129,16 +110,11 @@ const deleteRoom = async (req, res) => {
             success: true,
             message: 'Room is deleted.'
         })
-    } catch (error) {
-        res.status(400).json({
-            success:false,
-            message: error.message
-        })
-    } 
+ 
 
     
 
-}
+})
 
 export {
     allRooms,
