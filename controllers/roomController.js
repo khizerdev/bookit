@@ -57,7 +57,35 @@ const newRoom = async (req, res) => {
    
 }
 
+// Get room details   =>   /api/rooms/:id
+const getSingleRoom = async (req, res, next) => {
+
+    try {
+        const room = await Room.findById(req.query.id);
+
+        if (!room) {
+            return res.status(404).json({
+                success:false,
+                error: 'Room not found with this Id'
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            room
+        })
+    } catch (error) {
+        res.status(400).json({
+            success:false,
+            message: error.message
+        })
+    }
+
+    
+}
+
 export {
     allRooms,
-    newRoom
+    newRoom,
+    getSingleRoom
 }
