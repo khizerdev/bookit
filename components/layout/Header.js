@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react'
 import Link from 'next/link'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { loadUser } from '../../redux/actions/userActions'
-import { signOut } from 'next-auth/client'
 import Image from 'next/image'
 
 const Header = () => {
@@ -15,7 +12,7 @@ const Header = () => {
             <div className="container">
             <div className="col-3 p-0">
                 <div className="navbar-brand">
-                    <Image style={{ cursor:'pointer'}} src="/images/bookit_logo.png" alt="BookIT"/>
+                    <img style={{ cursor:'pointer'}} src="/assets/images/bookit_logo.png" alt="BookIT"/>
                 </div>
             </div>
 
