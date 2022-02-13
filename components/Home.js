@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify';
 import Room from './room/room';
 
 const Home = () => {
 
-    const { rooms } = useSelector(state => state.allRooms);
-    console.log(rooms)
+    const { rooms , error } = useSelector(state => state.allRooms);
+
+    useEffect(() => {
+        toast.error(error)
+        // dispatch(clearErrors())
+    }, [])
     return (
         <section id="rooms" className="container mt-5">
 

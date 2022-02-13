@@ -3,7 +3,9 @@ import ErrorHandler from '../utils/errorHandler'
 import catchAsyncErrors from '../middlewares/catchAsyncErrors'
 import APIFeatures from "../utils/apiFeatures";
 
-const allRooms = catchAsyncErrors(async (req,res) => {
+const allRooms = catchAsyncErrors(async (req,res,next) => {
+
+
     
     const resPerPage = 4;
 
