@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
-
+import { useDispatch, useSelector } from 'react-redux'
 
 const Home = () => {
 
+    const { rooms } = useSelector(state => state.allRooms);
+    console.log(rooms)
     return (
         <section id="rooms" className="container mt-5">
 
@@ -13,6 +15,7 @@ const Home = () => {
         <div className="col-sm-12 col-md-6 col-lg-3 my-3">
           <div className="card p-2">
             <img
+            alt=""
               className="card-img-top mx-auto"
               src="https://a0.muscache.com/im/pictures/a8f6a489-d236-4d2d-a57b-a95d928970af.jpg?im_w=960"
             />
