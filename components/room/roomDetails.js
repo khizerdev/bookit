@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Image from 'next/image'
 
-// import RoomFeatures from './RoomFeatures'
+import RoomFeatures from './roomFeatures'
 // import NewReview from '../review/NewReview'
 // import ListReviews from '../review/ListReviews'
 // import DatePicker from 'react-datepicker'
@@ -182,7 +182,7 @@ const RoomDetails = () => {
                         <h3>Description</h3>
                         <p>{room.description}</p>
 
-                        {/* <RoomFeatures room={room} /> */}
+                        <RoomFeatures room={room} />
 
                     </div>
 
